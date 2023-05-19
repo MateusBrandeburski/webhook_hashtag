@@ -29,7 +29,8 @@ def webhook():
             db.session.add(acessos)
             db.session.commit()
             
-            # Aqui poderia ser passada uma função para enviar um email para a pessoa avisado, ou para o adm, caso não seja automatizado. Coloquei um 'Try' para não exibir o erro do email fake.
+            """ Aqui poderia ser passada uma função para enviar um email para a pessoa avisado, ou para o adm, caso não seja automatizado. Coloquei um 'Try' para não exibir o erro do email fake.
+            """
             try:
                 envia_email("Seu acessso foi aprovado", Pagamento(webhook).email())
             except:
@@ -52,8 +53,8 @@ def webhook():
 
             print('Enviar mensagem avisando que foi reembolsado e o acesso foi retirado para o email: fulano@email.com')
     
-        return "STATUS OK"
+        return "STATUS OK", 200
     
-    return "Metódo não Permitido"
+    return "Method Not Allowed", 405
 
 

@@ -24,4 +24,3 @@ def envia_email(mensagem, email):
         smtp.send_message(msg)
  
  
- 
