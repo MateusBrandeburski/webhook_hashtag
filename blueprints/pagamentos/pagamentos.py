@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, jsonify, url_for, request, render_template
+from flask import Blueprint, request
 from classes.webhooks.pagamentos import Pagamento
 from classes.database.database import db, Pagamentos, Acessos
 from classes.envia_email.gmail import envia_email

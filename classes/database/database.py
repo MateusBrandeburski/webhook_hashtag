@@ -29,4 +29,15 @@ class Acessos(db.Model):
     def __init__(self, status_no_sistema, email):
         self.email = email
         self.status_no_sistema = status_no_sistema
+        
+class Usuarios(db.Model):
+    id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(150))
+    senha = db.Column(db.String(256), nullable=False)
+    token = db.Column(db.String(20), nullable=False)
+
+    def __init__(self, email, senha, token):
+        self.email = email
+        self.senha = senha
+        self.token = token
 
