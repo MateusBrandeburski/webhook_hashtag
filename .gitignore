@@ -168,5 +168,4 @@ terraform.rc
 
 *.pem
 
-./venv_hashtag
-/venv_hashtag
+venv/

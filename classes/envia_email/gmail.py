@@ -2,16 +2,20 @@ import os
 import smtplib
 from email.message import EmailMessage
 
-def envia_email():
+
+"""
+    Existe maneira de fazer mais complexo, enviando um HTML para o email. Mas como esse é um exemplo lúdico, achei melhor deixar assim
+"""
+def envia_email(mensagem, email):
     #consgiurar email, senha
     EMAIL_ADDRESS = 'mateus@trovale.com.br'
-    EMAIL_PASSWORD = ''
+    EMAIL_PASSWORD = os.environ['SENHA']
 
     msg = EmailMessage()
     msg['Subject'] = 'WebHooks'
     msg['From'] = 'mateus@trovale.com.br'
-    msg['To'] = 'mateus.brandeburski92@gmail.com'
-    msg.set_content("receba")
+    msg['To'] = email
+    msg.set_content(mensagem)
 
 
     # Enviar email

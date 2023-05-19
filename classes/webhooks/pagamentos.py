@@ -23,3 +23,5 @@ class Pagamento:
     def parcelas(self):
         parcelas = self.__webhook["parcelas"]
         return parcelas
+    
+    

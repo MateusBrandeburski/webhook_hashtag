@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # conexão com DB por meio do SQLALchemy, coloquei aqui porque eu preciso passar o 'app' como parâmetro e não posso gerar 'cirule_import'.
 def create_app():
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DB_WEBHOOK_HASHTAG"]
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:eEMlUA2r4T5GDlqRhDqk@containers.railway.app:5691/railway"
     db.init_app(app)
     return app
 

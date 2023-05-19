@@ -22,9 +22,11 @@ class Pagamentos(db.Model):
 class Acessos(db.Model):
     
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(150))
     status_no_sistema = db.Column(db.String(50), nullable=False)
 
 
-    def __init__(self, status_no_sistema):
+    def __init__(self, status_no_sistema, email):
+        self.email = email
         self.status_no_sistema = status_no_sistema
 
