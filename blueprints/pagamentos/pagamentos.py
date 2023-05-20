@@ -33,13 +33,13 @@ def webhook():
             """ Aqui poderia ser passada uma função para enviar um email para a pessoa avisado, ou para o adm, caso não seja automatizado. Coloquei um 'Try' para não exibir o erro do email fake.
             """
             try:
-                envia_email("Seu acessso foi aprovado", Pagamento(webhook).email())
+                envia_email("Seu acessso foi aprovado", Pagamento(webhook).email(), datetime.now().strftime('%d/%m/%Y %H:%M'))
             except:
                 print('Enviar mensagem de boas vindas para o email: fulano@email.com')
                 
         
         elif Pagamento(webhook).status() == "recusado":
-            acessos = Acessos("acesso_recusado", Pagamento(webhook).email())
+            acessos = Acessos("acesso_recusado", Pagamento(webhook).email(), datetime.now().strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()
@@ -47,7 +47,7 @@ def webhook():
             print('Enviar mensagem avisando que foi recusado para o email: fulano@email.com')
             
         elif Pagamento(webhook).status() == "reembolsado":
-            acessos = Acessos("acesso_bloqueado", Pagamento(webhook).email())
+            acessos = Acessos("acesso_bloqueado", Pagamento(webhook).email(), datetime.now().strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()
