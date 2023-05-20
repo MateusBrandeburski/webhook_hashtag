@@ -8,7 +8,7 @@ home = Blueprint('home', __name__, template_folder='templates')
 def index():
     
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('cadastro.index'))
+        return redirect(url_for('login.index'))
     else:
-        return render_template('home/home.html')
+        return render_template('pagamentos/pagamentos.html')
 

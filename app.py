@@ -2,6 +2,7 @@ from flask import Flask
 from blueprints.pagamentos.pagamentos import pagamentos
 from blueprints.cadastro.cadastro import cadastro
 from blueprints.home.home import home
+from blueprints.login.login import login
 from classes.database.database import db
 import os
 
@@ -19,6 +20,7 @@ def create_app():
 app.register_blueprint(pagamentos)
 app.register_blueprint(cadastro)
 app.register_blueprint(home)
+app.register_blueprint(login)
 
 app = create_app()
 if __name__ == '__main__':

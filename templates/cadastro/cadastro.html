@@ -27,14 +27,14 @@
                 <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2" id="email" name="email" required></p>
     
               <p class="text-white"><label>Senha</label>
-              <input type="password" class="form-control" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-=]).{8,}$" aria-describedby="basic-addon2" id="senha" name="senha" title="8 caracteres, contendo pelo menos um dígito, uma letra minúscula, uma letra maiúscula e um caractere especial" required></span>
+              <input type="password" class="form-control" pattern=".{8,}$" aria-describedby="basic-addon2" id="senha" name="senha" title="8 caracteres, contendo pelo menos um dígito, uma letra minúscula, uma letra maiúscula e um caractere especial" required></span>
               </p>
     
               <p class="text-white"><label>Confirmar senha</label>
               <input class="form-control" type="password" id="confirma_senha" name="confirma_senha" required>
             
               <p class="text-white"><label>Token</label>
-                <input class="form-control" type="password" id="token" name="token" required>
+                <input class="form-control" type="string" id="token" name="token" required>
                 
               <div class="col-xs-12 mt-2 text-end">
                 <button type="submit" class="btn btn-primary">Cadastrar</button>

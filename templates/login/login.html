@@ -1,0 +1,38 @@
+{% extends 'template_generico.html' %}
+{% block conteudo %}
+
+<div class="container px-5 p-5">
+    <div class="row gx-5 align-items-center justify-content-center">
+        <div class="col-md-5">
+        <!-- inicio Mensagem de logado ou não logado -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %} 
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                  {% if message == 'Logout efetuado com sucesso' %}
+                    <li class="alert alert-success">{{ message }}</li>
+                  {% else %}
+                    <li class="alert alert-danger">{{ message }}</li>
+                  {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <!-- fim Mensagem de logado ou não logado -->
+        <h1 class="text-white">Login</h1>
+        <form method="POST" action="/autenticar">
+            <p class="text-white">
+              <label>Email:</label>
+              <input class="form-control" type="text" id="email" name="email" required>
+            </p>
+            <p class="text-white"><label>Senha:</label> <input class="form-control" type="password" name="senha" required></p>
+            <div class="d-flex justify-content-between">
+              <p class="text-white"><button class="btn btn-primary" type="submit">Entrar</button></p>
+              <p class="text-white btn btn-primary"><a class="text-white" style="text-decoration: none;" href="{{url_for('cadastro.register')}}">Cadastro</a></p>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
