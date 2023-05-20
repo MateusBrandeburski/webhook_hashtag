@@ -1,8 +1,9 @@
 from flask import Flask
-from blueprints.pagamentos.pagamentos import pagamentos
+from blueprints.webhook.pagamentos import pagamentos
 from blueprints.cadastro.cadastro import cadastro
 from blueprints.home.home import home
 from blueprints.login.login import login
+from blueprints.home.info_pagamentos.info_pagamentos import tratativas
 from classes.database.database import db
 import os
 
@@ -21,6 +22,7 @@ app.register_blueprint(pagamentos)
 app.register_blueprint(cadastro)
 app.register_blueprint(home)
 app.register_blueprint(login)
+app.register_blueprint(tratativas)
 
 app = create_app()
 if __name__ == '__main__':

@@ -15,6 +15,10 @@ class Pagamento:
     def status(self):
         status = self.__webhook["status"]
         return status
+    
+    def valor(self):
+        valor = self.__webhook["valor"]
+        return valor
       
     def forma_de_pagamento(self):
         forma_pagamento = self.__webhook["forma_pagamento"]

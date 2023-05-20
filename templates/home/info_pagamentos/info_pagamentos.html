@@ -1,0 +1,64 @@
+{% extends 'template_generico.html' %}
+{% block conteudo %}
+<div class="p-4">
+      <h1 class="display-4 fw-bold text-black p-3 text-white text-center">Pagamentos e Tratativas do Sistema</h1>
+<div>
+<!-- início dropdow -->
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Filtros
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{url_for('tratativas.status_completo')}}">Email e todos os dados</a></li>
+        <li><a class="dropdown-item" href="#">Email e Status</a></li>
+    </ul>
+</div>
+<!-- fim dropdow -->
+{% if ambas_tabelas %}
+<h3 class="my-4 text-white" >Tratativas:</h3>
+<table class="table table-striped table-responsive table-bordered border-black" style="background-color: rgb(255, 255, 255);">
+    <thead class="thead-default">
+            <th>Email</th>
+            <th>Status no sistema</th>
+            <th>Data e hora de alteração</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for acesso in acessos %}
+        <tr>
+            <td>{{ acesso.email }}</td>
+            <td>{{ acesso.status_no_sistema }}</td>
+            <td>{{ acesso.data }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<h3 class="my-4 text-white" >Tratativas:</h3>
+<table class="table table-striped table-responsive table-bordered border-black" style="background-color: rgb(255, 255, 255);">
+    <thead class="thead-default">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Status no sistema</th>
+            <th>Forma de pagamento</th>
+            <th>Parcelas</th>
+            <th>Data e hora de alteração</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for acesso, pagamento in ambas_tabelas %}
+        <tr>
+            <td>{{ pagamento.nome }}</td>
+            <td>{{ acesso.email }}</td>
+            <td>{{ acesso.status_no_sistema }}</td>
+            <td>{{ pagamento.forma_pagamento }}</td>
+            <td>{{ pagamento.parcelas }}</td>
+            <td>{{ acesso.data }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+{% endblock %}
