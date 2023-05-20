@@ -3,7 +3,7 @@ from validate_email import validate_email
 from flask_bcrypt import Bcrypt
 from classes.database.database import db, Usuarios
 from sqlalchemy.exc import IntegrityError
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
 
@@ -27,7 +27,8 @@ def processa_cadastro():
             senha = request.form['senha']
             confirma_senha = request.form['confirma_senha']
             token = request.form['token']
-            data = datetime.now().strftime('%d/%m/%Y %H:%M')
+            # data e hora tratas para fuso horário da deploy na Railway
+            data = (datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M')
 
                 
             # verifica se o email é valido. É uma verificação superficial (verifica se tem @ no email). Se for válido, passa. 
