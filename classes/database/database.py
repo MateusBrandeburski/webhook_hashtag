@@ -10,6 +10,7 @@ class Pagamentos(db.Model):
     status = db.Column(db.String(50))
     forma_pagamento = db.Column(db.String(50))
     parcelas = db.Column(db.String(50))
+    
 
     def __init__(self, nome, email, status, forma_pagamento, parcelas):
         self.nome = nome
@@ -22,8 +23,9 @@ class Pagamentos(db.Model):
 class Acessos(db.Model):
     
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    email = db.Column(db.String(150))
+    email = db.Column(db.String(150), nullable=False)
     status_no_sistema = db.Column(db.String(50), nullable=False)
+    data = db.Column(db.String(20), nullable=False)
 
 
     def __init__(self, status_no_sistema, email):
@@ -35,6 +37,7 @@ class Usuarios(db.Model):
     email = db.Column(db.String(150), unique=True)
     senha = db.Column(db.String(256), nullable=False)
     token = db.Column(db.String(20), nullable=False)
+    data = db.Column(db.String(20), nullable=False)
 
     def __init__(self, email, senha, token):
         self.email = email
