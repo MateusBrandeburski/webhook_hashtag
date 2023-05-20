@@ -24,9 +24,9 @@ def webhook():
         if Pagamento(webhook).status() == "aprovado":
             """_Eu fiquei na dúvida se fazia uma classe apenas para essa tratativa do sistema, mas necesse caso em específico, achei mais simples passar direto uma string no parametro da classe da tavela 'Acessos'.
             """
-            data = (datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M')
             
-            acessos = Acessos("acesso_liberado", Pagamento(webhook).email(), data)
+            
+            acessos = Acessos("acesso_liberado", Pagamento(webhook).email(), data=(datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()
@@ -40,7 +40,7 @@ def webhook():
                 
         
         elif Pagamento(webhook).status() == "recusado":
-            acessos = Acessos("acesso_recusado", Pagamento(webhook).email(), data)
+            acessos = Acessos("acesso_recusado", Pagamento(webhook).email(), data=(datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()
@@ -48,7 +48,7 @@ def webhook():
             print('Enviar mensagem avisando que foi recusado para o email: fulano@email.com')
             
         elif Pagamento(webhook).status() == "reembolsado":
-            acessos = Acessos("acesso_bloqueado", Pagamento(webhook).email(), data)
+            acessos = Acessos("acesso_bloqueado", Pagamento(webhook).email(), data=(datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()
