@@ -9,7 +9,7 @@ cadastro = Blueprint('cadastro', __name__, template_folder='templates')
 
 # rota que renderiza a página de cadastro
 @cadastro.route('/')
-def index():
+def register():
     return render_template('cadastro/cadastro.html')
 
 # rota que processa o cadastro.
@@ -31,7 +31,6 @@ def processa_cadastro():
                 bcrypt = Bcrypt()
                 hashed_password = bcrypt.generate_password_hash(senha).decode('utf-8')
             
- 
                 # verifica se o email é valido. É uma verificação superficial (verifica se tem @ no email) 
                 is_valid = validate_email(email)
                 if is_valid:             
@@ -43,8 +42,7 @@ def processa_cadastro():
                         novo_usuario = Usuarios(email, hashed_password, token)  
                         db.session.add(novo_usuario)
                         db.session.commit()
-                        
-                                               
+                                                     
                     else:
                         flash('Token inválido')
                         return redirect(url_for('cadastro.register'))
