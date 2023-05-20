@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from classes.webhooks.pagamentos import Pagamento
 from classes.database.database import db, Pagamentos, Acessos
 from classes.envia_email.gmail import envia_email
+from datetime import datetime
 import json
 
 pagamentos = Blueprint('pagamentos', __name__, template_folder='templates')
@@ -24,7 +25,7 @@ def webhook():
         if Pagamento(webhook).status() == "aprovado":
             """_Eu fiquei na dúvida se fazia uma classe apenas para essa tratativa do sistema, mas necesse caso em específico, achei mais simples passar direto uma string no parametro da classe da tavela 'Acessos'.
             """
-            acessos = Acessos("acesso_liberado", Pagamento(webhook).email())
+            acessos = Acessos("acesso_liberado", Pagamento(webhook).email(), datetime.now().strftime('%d/%m/%Y %H:%M'))
             
             db.session.add(acessos)
             db.session.commit()

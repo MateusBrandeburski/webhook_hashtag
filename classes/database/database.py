@@ -25,22 +25,22 @@ class Acessos(db.Model):
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(150), nullable=False)
     status_no_sistema = db.Column(db.String(50), nullable=False)
-    data = db.Column(db.String(20), nullable=False)
+    data = db.Column(db.String(20))
 
-
-    def __init__(self, status_no_sistema, email):
+    def __init__(self, status_no_sistema, email, data):
         self.email = email
         self.status_no_sistema = status_no_sistema
+        self.data = data
         
 class Usuarios(db.Model):
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(150), unique=True)
     senha = db.Column(db.String(256), nullable=False)
     token = db.Column(db.String(20), nullable=False)
-    data = db.Column(db.String(20), nullable=False)
+    data = db.Column(db.String(20))
 
-    def __init__(self, email, senha, token):
+    def __init__(self, email, senha, token, data):
         self.email = email
         self.senha = senha
         self.token = token
-
+        self.data = data

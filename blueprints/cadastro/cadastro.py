@@ -3,6 +3,7 @@ from validate_email import validate_email
 from flask_bcrypt import Bcrypt
 from classes.database.database import db, Usuarios
 from sqlalchemy.exc import IntegrityError
+from datetime import datetime
 import os
 
 
@@ -26,6 +27,8 @@ def processa_cadastro():
             senha = request.form['senha']
             confirma_senha = request.form['confirma_senha']
             token = request.form['token']
+            data = datetime.now().strftime('%d/%m/%Y %H:%M')
+
                 
             # verifica se o email é valido. É uma verificação superficial (verifica se tem @ no email). Se for válido, passa. 
             is_valid = validate_email(email)
@@ -40,7 +43,7 @@ def processa_cadastro():
                     if token == os.environ['TOKEN_ADM']:
                         
                         # agora monta a query e commita no DB          
-                        novo_usuario = Usuarios(email, hashed_password, token)  
+                        novo_usuario = Usuarios(email, hashed_password, token, data)  
                         db.session.add(novo_usuario)
                         db.session.commit()
                         
@@ -70,4 +73,4 @@ def processa_cadastro():
             flash('Todos os campos precissam ser preenchidos.')
             return redirect(url_for('cadastro.register'))
     
-    return "Método não permitido", 405
+    return "Method Not Allowed", 405
