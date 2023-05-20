@@ -13,9 +13,8 @@ def index():
         return render_template('login/login.html')
     
     else:
-        return render_template('pagamentos/pagamentos.html')
-
-
+        return redirect(url_for('tratativas.index'))
+    
 # Processa o login
 @login.route('/autenticar', methods=['POST'])
 def autenticar():
@@ -27,7 +26,7 @@ def autenticar():
 
         if usuario is not None and bcrypt.check_password_hash(usuario.senha, senha):   
             session['usuario_logado'] = usuario.email
-            return redirect(url_for('home.index'))
+            return redirect(url_for('tratativas.index'))
 
         flash('Username ou password inválidos')
         return redirect(url_for('login.index'))

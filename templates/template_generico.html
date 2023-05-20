@@ -11,9 +11,39 @@
 <!-- Header -->
 <header class="">
     <div class="p-1 text-center bg-white shadow">
-        <h1 class="mb-1 text-black">Hashtag - Sistema de Pagamentos ©</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link disabled">Informoções</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-danger" href="#">Logout</a>
+                  </li>
+                  <li class="nav-item ms-3">
+                  </li>
+                </ul>
+              </div>
+                <!-- início input busca email -->
+                <div class="col my-auto">
+                    <form class="d-flex" method='POST' action='/filtro-por-email'>
+                        <input class="form-control me-2" type="search" id="email" name="email" placeholder="Digite o email" aria-label="Search">
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </form>
+                </div>
+                <!-- fim input busca email -->  
+            </div>
+          </nav>
     </div>
-    </header>
+</header>
 <!-- fim Header -->
 
 {% block conteudo %} 

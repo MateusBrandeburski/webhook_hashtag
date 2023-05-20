@@ -34,7 +34,7 @@ def webhook():
                 
         
         elif Pagamento(webhook).status() == "recusado":
-            pagamentos = Pagamentos(Pagamento(webhook).nome(), Pagamento(webhook).email(), Pagamento(webhook).status(), Pagamento(webhook).valor() , Pagamento(webhook).forma_de_pagamento(), Pagamento(webhook).parcelas(), "apagamento_recusado", data=(datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M'))
+            pagamentos = Pagamentos(Pagamento(webhook).nome(), Pagamento(webhook).email(), Pagamento(webhook).status(), Pagamento(webhook).valor() , Pagamento(webhook).forma_de_pagamento(), Pagamento(webhook).parcelas(), "acesso_negado", data=(datetime.now() - timedelta(hours=3)).strftime('%d/%m/%Y %H:%M'))
 
             db.session.add(pagamentos)
             db.session.commit()       

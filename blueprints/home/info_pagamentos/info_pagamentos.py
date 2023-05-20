@@ -13,17 +13,21 @@ def index():
       
     else:      
         pagamentos = Pagamentos.query.all()
-        return render_template('home/info_pagamentos/info_pagamentos.html', pagamentos)
+        return render_template('home/info_pagamentos/info_pagamentos.html', pagamentos=pagamentos)
     
 
-@tratativas.route('/status-completo')
+@tratativas.route('/filtro-por-email', methods=['GET','POST'])
 def status_completo():
     
     # verifica se o usuário está logado.
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login.index'))
       
-    else:      
-
-        pagamento = Pagamentos.query.filter_by(email='exemplo@email.com').first()
-        return render_template('home/info_pagamentos/info_pagamentos.html')
+    else:   
+        email_filtrado = request.form.get('email')
+        filtros = Pagamentos.query.filter_by(email=email_filtrado).all()
+        if filtros:
+            return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
+        else:
+            flash('Email não encontrado na base de dados!')
+            return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
