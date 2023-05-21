@@ -18,36 +18,38 @@
 {% endwith %}
 </div>
 <!-- fim Mensagem Flash -->
+<!-- início da tabela rendeziada com a busca -->
 {% if filtros %}
 <div class="container"> 
-        <table class="table table-striped table-responsive table-bordered border-black" style="background-color: rgb(255, 255, 255);">
-            <thead class="thead-default">
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Status da transação</th>
-                <th>Status no sistema</th>
-                <th>Valor</th>
-                <th>Forma de pagamento</th>
-                <th>Parcelas</th>
-                <th>Data e hora</th>       
-            </thead>
-            <tbody>
-                {% for filtro in filtros %}
-                <tr>
-                    <td>{{ filtro.nome }}</td>
-                    <td>{{ filtro.email }}</td>
-                    <td>{{ filtro.status}}</td>
-                    <td>{{ filtro.status_no_sistema}}</td>
-                    <td>{{ filtro.valor }}</td>
-                    <td>{{ filtro.forma_pagamento }}</td>
-                    <td>{{ filtro.parcelas }}</td>
-                    <td>{{ filtro.data }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <table class="table table-striped table-responsive table-bordered border-black" style="background-color: rgb(255, 255, 255);">
+        <thead class="thead-default">
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Status da transação</th>
+            <th>Status no sistema</th>
+            <th>Valor</th>
+            <th>Forma de pagamento</th>
+            <th>Parcelas</th>
+            <th>Data e hora</th>       
+        </thead>
+        <tbody>
+            {% for filtro in filtros %}
+            <tr>
+                <td>{{ filtro.nome }}</td>
+                <td>{{ filtro.email }}</td>
+                <td>{{ filtro.status}}</td>
+                <td>{{ filtro.status_no_sistema}}</td>
+                <td>{{ filtro.valor }}</td>
+                <td>{{ filtro.forma_pagamento }}</td>
+                <td>{{ filtro.parcelas }}</td>
+                <td>{{ filtro.data }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
-
+<!-- fim da tabela rendeziada com a busca -->
+<!-- início da tabela completa -->
 {% else %}
 <div class="container">
     <table class="table table-striped table-responsive table-bordered border-black" style="background-color: rgb(255, 255, 255);">
@@ -76,28 +78,72 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <!-- Paginação -->
+    <!-- fim da tabela completa  -->
+    <!-- início da paginação -->
     <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-</div>
-
+        <ul class="pagination justify-content-center">
+            {% if pagina_atual > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{ pagina_atual - 1 }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
     
+            {% if pagina_atual > 3 %}
+                <li class="page-item"><a class="page-link" href="?pagina=1">1</a></li>
+                {% if pagina_atual > 5 %}
+                    <li class="page-item"><span class="page-link">...</span></li>
+                {% endif %}
+            {% endif %}
+    
+            {% set num_iteracoes = 5 %}
+            {% set iteracoes_restantes = num_iteracoes %}
+            {% set ultima_pagina_exibida = pagina_atual + num_iteracoes - 1 %}
+            {% for pagina in range(pagina_atual, ultima_pagina_exibida + 1) %}
+                {% if pagina == pagina_atual %}
+                    <li class="page-item active"><a class="page-link" href="?pagina={{ pagina }}">{{ pagina }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?pagina={{ pagina }}">{{ pagina }}</a></li>
+                {% endif %}
+    
+                {% if pagina == total_paginas %}
+                    {% set iteracoes_restantes = 0 %}
+                {% endif %}
+    
+                {% if iteracoes_restantes == 1 and ultima_pagina_exibida < total_paginas %}
+                    <li class="page-item"><span class="page-link">...</span></li>
+                    <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
+                    {% set iteracoes_restantes = 0 %}
+                {% endif %}
+    
+                {% set iteracoes_restantes = iteracoes_restantes - 1 %}
+                {% if pagina == total_paginas and iteracoes_restantes > 0 %}
+                    {% for _ in range(iteracoes_restantes) %}
+                        <li class="page-item"><span class="page-link">...</span></li>
+                        <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
+                    {% endfor %}
+                    {% set iteracoes_restantes = 0 %}
+                {% endif %}
+            {% endfor %}
+    
+            {% if pagina_atual < total_paginas - 2 %}
+                {% if pagina_atual < total_paginas - 4 %}
+                    <li class="page-item"><span class="page-link">...</span></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="?pagina={{ total_paginas }}">{{ total_paginas }}</a></li>
+            {% endif %}
+    
+            {% if pagina_atual < total_paginas %}
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{ pagina_atual + 1 }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    <!-- Fim da paginação -->
+</div>
 {% endif %}
 {% endblock %}
