@@ -48,7 +48,7 @@ def processa_cadastro():
                         db.session.add(novo_usuario)
                         db.session.commit()
                         
-                        return redirect(url_for('home.index'))
+                        return redirect(url_for('login.index'))
                                                      
                     else:
                         flash('Token inválido')
