@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 
 # secret_key é para o cookie do navegador
-app.secret_key = ['M4T3usBrnd']
+app.secret_key = ['M4T3usBrnd3']
 
 # conexão com DB por meio do SQLALchemy, coloquei aqui porque eu preciso passar o 'app' como parâmetro e não posso gerar 'cirule_import'.
 def create_app():

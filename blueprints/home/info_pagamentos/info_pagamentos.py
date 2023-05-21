@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from classes.database.database import db, Pagamentos
 
+
 tratativas = Blueprint('tratativas', __name__, template_folder='template')
 
 # redenderiza tabela que mostra os dados no banco de dados.
@@ -31,3 +32,4 @@ def status_completo():
         else:
             flash('Email não encontrado na base de dados!')
             return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
+
