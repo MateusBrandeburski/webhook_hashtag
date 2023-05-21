@@ -55,5 +55,6 @@ def status_completo():
             return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
         else:
             flash('Email não encontrado na base de dados!')
-            return render_template('home/info_pagamentos/info_pagamentos.html', filtros=filtros)
+            pagina = int(request.args.get('pagina', 1))
+            return redirect(url_for('tratativas.index'))
 

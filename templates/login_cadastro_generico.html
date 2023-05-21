@@ -7,18 +7,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
-<body class="bd-masthead mb-3" style="background-color:rgb(89, 95, 0)">
+<body class="bd-masthead mb-3" style="background-color:rgb(103, 129, 248)">
 <!-- Header -->
 <header class="">
     <div class="p-1 bg-white shadow">
-        <div class="container">
-            <div class="row">
-                <div class="col">
+        <div class="container text-center">
                     <img width="100" height="45" src="{{ url_for('static', filename='image/Logo-Hashtag-Original-100x45px.png') }}" alt="Hashtag Treinamentos" decoding="async" class="lazyloaded" data-ll-status="loaded">
-                </div>
-                <div class="col col-lg-8">
-                    <h1 class="text-black">Controle Financeiro</h1>
-                </div>            
             </div>
         </div>
     </div>
@@ -28,6 +22,22 @@
 {% block conteudo %} 
 {% endblock %}
 
-
+<!-- footer -->
+<footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top text-white">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© 2023 Mateus Brandeburski Ramos</font></font></span>
+    </div>
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a target="_blank" class="text-muted" href="https://github.com/MateusBrandeburski"><img src="https://img.icons8.com/glyph-neue/30/FFFFFF/github.png"/></a></li>
+      <li class="ms-3"><a target="_blank" class="text-muted" href="https://www.linkedin.com/in/mateus-brandeburski-001ba7202/"><img src="https://img.icons8.com/ios-filled/30/FFFFFF/linkedin.png"/></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
+  <!-- fim footer -->
 </body>
 </html>

@@ -7,49 +7,62 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 </head>
-<body class="bd-masthead mb-3" style="background-color:rgb(89, 95, 0)">
+<body class="bd-masthead mb-3" style="background-color:rgb(103, 129, 248)">
 <!-- Header -->
-<header class="">
-    <div class="p-1 text-center bg-white shadow">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+<header>
+  <div class="p-1 text-center bg-white shadow">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="{{url_for('tratativas.index')}}">Home</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
               <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="nav-link disabled">Informoções</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-danger" href="#">Logout</a>
-                  </li>
-                  <li class="nav-item ms-3">
-                  </li>
-                </ul>
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link disabled">Informações</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-danger" href="{{url_for('login.logout')}}">Logout</a>
+                      </li>
+                  </ul>
               </div>
-                <!-- início input busca email -->
-                <div class="col my-auto">
-                    <form class="d-flex" method='POST' action='/filtro-por-email'>
-                        <input class="form-control me-2" type="search" id="email" name="email" placeholder="Digite o email" aria-label="Search">
-                        <button class="btn btn-primary" type="submit">Buscar</button>
-                    </form>
-                </div>
-                <!-- fim input busca email -->  
-            </div>
-          </nav>
-    </div>
+              <!-- início input busca email -->
+              <div class="col my-auto">
+                  <form class="d-flex" method='POST' action='/filtro-por-email'>
+                      <input class="form-control me-2" type="search" id="email" name="email" placeholder="Digite o email" aria-label="Search">
+                      <button class="btn btn-primary" type="submit">Buscar</button>
+                  </form>
+              </div>
+              <!-- fim input busca email -->  
+          </div>
+      </nav>
+  </div>
 </header>
 <!-- fim Header -->
+
+
 
 {% block conteudo %} 
 
 {% endblock %}
 
-
+<!-- footer -->
+<footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top text-white">
+  <div class="col-md-4 d-flex align-items-center">
+    <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+      <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+    <span class="mb-3 mb-md-0 text-white"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© 2023 Mateus Brandeburski Ramos</font></font></span>
+  </div>
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+    <li class="ms-3"><a target="_blank" class="text-muted" href="https://github.com/MateusBrandeburski"><img src="https://img.icons8.com/glyph-neue/30/FFFFFF/github.png"/></a></li>
+    <li class="ms-3"><a target="_blank" class="text-muted" href="https://www.linkedin.com/in/mateus-brandeburski-001ba7202/"><img src="https://img.icons8.com/ios-filled/30/FFFFFF/linkedin.png"/></a></li>
+    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+  </ul>
+</footer>
+<!-- fim footer -->
 </body>
 </html>
